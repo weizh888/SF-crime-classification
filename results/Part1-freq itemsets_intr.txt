@@ -1,0 +1,51 @@
+interest({Monday, None}=>{Larceny/theft})=0.0892
+interest({Larceny/theft, None}=>{Monday})=-0.0044
+interest({Larceny/theft, Monday}=>{None})=0.2905
+interest({Mission, None}=>{Larceny/theft})=0.0567
+interest({Larceny/theft, None}=>{Mission})=-0.0335
+interest({Larceny/theft, Mission}=>{None})=0.2855
+interest({None, Sunday}=>{Larceny/theft})=0.1064
+interest({Larceny/theft, Sunday}=>{None})=0.3061
+interest({Larceny/theft, None}=>{Sunday})=0.0068
+interest({Drug/narcotic, Tenderloin}=>{Arrest, Booked})=0.6148
+interest({Arrest, Booked, Tenderloin}=>{Drug/narcotic})=0.309
+interest({Arrest, Booked, Drug/narcotic}=>{Tenderloin})=0.2506
+interest({None, Northern}=>{Larceny/theft})=0.1869
+interest({Larceny/theft, Northern}=>{None})=0.3474
+interest({Larceny/theft, None}=>{Northern})=0.0533
+interest({None, Southern}=>{Larceny/theft})=0.189
+interest({Larceny/theft, Southern}=>{None})=0.2714
+interest({Larceny/theft, None}=>{Southern})=0.0538
+interest({None, Southern}=>{Non-criminal})=0.0576
+interest({Non-criminal, Southern}=>{None})=0.1741
+interest({Non-criminal, None}=>{Southern})=0.044
+interest({Larceny/theft, None}=>{Friday})=0.0038
+interest({Friday, None}=>{Larceny/theft})=0.0966
+interest({Friday, Larceny/theft}=>{None})=0.3018
+interest({None, Southern}=>{Friday})=0.0094
+interest({Friday, Southern}=>{None})=0.0212
+interest({Friday, None}=>{Southern})=0.0048
+interest({None, Wednesday}=>{Larceny/theft})=0.0923
+interest({Larceny/theft, Wednesday}=>{None})=0.2878
+interest({Larceny/theft, None}=>{Wednesday})=-0.0083
+interest({Larceny/theft, None}=>{Central})=0.0501
+interest({Central, None}=>{Larceny/theft})=0.183
+interest({Central, Larceny/theft}=>{None})=0.321
+interest({None, Saturday}=>{Larceny/theft})=0.1135
+interest({Larceny/theft, Saturday}=>{None})=0.2989
+interest({Larceny/theft, None}=>{Saturday})=0.0118
+interest({Saturday, Southern}=>{None})=0.0282
+interest({None, Southern}=>{Saturday})=0.0112
+interest({None, Saturday}=>{Southern})=0.0079
+interest({None, Southern}=>{800 Block of Bryant St})=0.1712
+interest({800 Block of Bryant St, Southern}=>{None})=0.113
+interest({800 Block of Bryant St, None}=>{Southern})=0.821
+interest({None, Thursday}=>{Larceny/theft})=0.0954
+interest({Larceny/theft, Thursday}=>{None})=0.2935
+interest({Larceny/theft, None}=>{Thursday})=-0.0031
+interest({Southern, Thursday}=>{None})=-0.0151
+interest({None, Thursday}=>{Southern})=-0.001
+interest({None, Southern}=>{Thursday})=-0.0021
+interest({None, Tuesday}=>{Larceny/theft})=0.0924
+interest({Larceny/theft, Tuesday}=>{None})=0.2876
+interest({Larceny/theft, None}=>{Tuesday})=-0.0065

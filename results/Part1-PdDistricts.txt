@@ -1,0 +1,10 @@
+Southern: 157182
+Mission: 119908
+Northern: 105296
+Bayview: 89431
+Central: 85460
+Tenderloin: 81809
+Ingleside: 78845
+Taraval: 65596
+Park: 49313
+Richmond: 45209

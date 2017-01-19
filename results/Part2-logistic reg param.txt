@@ -1,0 +1,3 @@
+Best Error Rate = 0.800652598282
+Best RegParam = 1
+Best Intercept = True

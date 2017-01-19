@@ -1,0 +1,7 @@
+Monday: 121584
+Tuesday: 124965
+Wednesday: 129211
+Thursday: 125038
+Friday: 133734
+Saturday: 126810
+Sunday: 116707

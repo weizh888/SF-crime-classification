@@ -1,0 +1,69 @@
+{Larceny/theft, Monday, None}: 20987
+{Larceny/theft, Mission, None}: 16136
+{Larceny/theft, None, Sunday}: 21881
+{Arrest, Booked, Drug/narcotic, Tenderloin}: 15039
+{Larceny/theft, None, Northern}: 27123
+{Larceny/theft, None, Southern}: 36462
+{Non-criminal, None, Southern}: 15283
+{Friday, Larceny/theft, None}: 24440
+{Friday, None, Southern}: 15191
+{Larceny/theft, None, Wednesday}: 21739
+{Central, Larceny/theft, None}: 23079
+{Larceny/theft, None, Saturday}: 24463
+{None, Saturday, Southern}: 14621
+{800 Block of Bryant St, None, Southern}: 18917
+{Larceny/theft, None, Thursday}: 21813
+{None, Southern, Thursday}: 13176
+{Larceny/theft, None, Tuesday}: 21263
+
+conf({Monday, None}=>{Larceny/theft})=0.2884
+conf({Larceny/theft, None}=>{Monday})=0.134
+conf({Larceny/theft, Monday}=>{None})=0.8904
+conf({Mission, None}=>{Larceny/theft})=0.2559
+conf({Larceny/theft, None}=>{Mission})=0.103
+conf({Larceny/theft, Mission}=>{None})=0.8855
+conf({None, Sunday}=>{Larceny/theft})=0.3056
+conf({Larceny/theft, Sunday}=>{None})=0.906
+conf({Larceny/theft, None}=>{Sunday})=0.1397
+conf({Drug/narcotic, Tenderloin}=>{Arrest, Booked})=0.8499
+conf({Arrest, Booked, Tenderloin}=>{Drug/narcotic})=0.3705
+conf({Arrest, Booked, Drug/narcotic}=>{Tenderloin})=0.3438
+conf({None, Northern}=>{Larceny/theft})=0.3861
+conf({Larceny/theft, Northern}=>{None})=0.9474
+conf({Larceny/theft, None}=>{Northern})=0.1732
+conf({None, Southern}=>{Larceny/theft})=0.3882
+conf({Larceny/theft, Southern}=>{None})=0.8714
+conf({Larceny/theft, None}=>{Southern})=0.2329
+conf({None, Southern}=>{Non-criminal})=0.1627
+conf({Non-criminal, Southern}=>{None})=0.774
+conf({Non-criminal, None}=>{Southern})=0.223
+conf({Larceny/theft, None}=>{Friday})=0.1561
+conf({Friday, None}=>{Larceny/theft})=0.2958
+conf({Friday, Larceny/theft}=>{None})=0.9017
+conf({None, Southern}=>{Friday})=0.1617
+conf({Friday, Southern}=>{None})=0.6211
+conf({Friday, None}=>{Southern})=0.1838
+conf({None, Wednesday}=>{Larceny/theft})=0.2915
+conf({Larceny/theft, Wednesday}=>{None})=0.8878
+conf({Larceny/theft, None}=>{Wednesday})=0.1388
+conf({Larceny/theft, None}=>{Central})=0.1474
+conf({Central, None}=>{Larceny/theft})=0.3822
+conf({Central, Larceny/theft}=>{None})=0.9209
+conf({None, Saturday}=>{Larceny/theft})=0.3127
+conf({Larceny/theft, Saturday}=>{None})=0.8988
+conf({Larceny/theft, None}=>{Saturday})=0.1562
+conf({Saturday, Southern}=>{None})=0.6281
+conf({None, Southern}=>{Saturday})=0.1557
+conf({None, Saturday}=>{Southern})=0.1869
+conf({None, Southern}=>{800 Block of Bryant St})=0.2014
+conf({800 Block of Bryant St, Southern}=>{None})=0.713
+conf({800 Block of Bryant St, None}=>{Southern})=1.0
+conf({None, Thursday}=>{Larceny/theft})=0.2946
+conf({Larceny/theft, Thursday}=>{None})=0.8934
+conf({Larceny/theft, None}=>{Thursday})=0.1393
+conf({Southern, Thursday}=>{None})=0.5849
+conf({None, Thursday}=>{Southern})=0.178
+conf({None, Southern}=>{Thursday})=0.1403
+conf({None, Tuesday}=>{Larceny/theft})=0.2916
+conf({Larceny/theft, Tuesday}=>{None})=0.8875
+conf({Larceny/theft, None}=>{Tuesday})=0.1358

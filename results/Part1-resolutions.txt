@@ -1,0 +1,17 @@
+None: 526790
+Arrest, Booked: 206403
+Arrest, Cited: 77004
+Located: 17101
+Psychopathic Case: 14534
+Unfounded: 9585
+Juvenile Booked: 5564
+Complainant Refuses To Prosecute: 3976
+District Attorney Refuses To Prosecute: 3934
+Not Prosecuted: 3714
+Juvenile Cited: 3332
+Prosecuted By Outside Agency: 2504
+Exceptional Clearance: 1530
+Juvenile Admonished: 1455
+Juvenile Diverted: 355
+Cleared-contact Juvenile For More Info: 217
+Prosecuted For Lesser Offense: 51

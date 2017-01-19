@@ -1,0 +1,39 @@
+Larceny/theft: 174900
+Other Offenses: 126182
+Non-criminal: 92304
+Assault: 76876
+Drug/narcotic: 53971
+Vehicle Theft: 53781
+Vandalism: 44725
+Warrants: 42214
+Burglary: 36755
+Suspicious Occ: 31414
+Missing Person: 25989
+Robbery: 23000
+Fraud: 16679
+Forgery/counterfeiting: 10609
+Secondary Codes: 9985
+Weapon Laws: 8555
+Prostitution: 7484
+Trespass: 7326
+Stolen Property: 4540
+Sex Offenses Forcible: 4388
+Disorderly Conduct: 4320
+Drunkenness: 4280
+Recovered Vehicle: 3138
+Kidnapping: 2341
+Driving Under The Influence: 2268
+Runaway: 1946
+Liquor Laws: 1903
+Arson: 1513
+Loitering: 1225
+Embezzlement: 1166
+Suicide: 508
+Family Offenses: 491
+Bad Checks: 406
+Bribery: 289
+Extortion: 256
+Sex Offenses Non Forcible: 148
+Gambling: 146
+Pornography/obscene Mat: 22
+Trea: 6
