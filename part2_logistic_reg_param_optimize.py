@@ -1,4 +1,5 @@
 import os
+
 from numpy import array
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
@@ -21,7 +22,7 @@ if __name__ == '__main__':
    feat4 = raw_training.map(lambda x: x[3]).distinct().collect()
    label_set = sorted(raw_training.map(lambda x: x[4]).distinct().collect())
    parsedData = raw_training.map(lambda x: LabeledPoint(x[4], array([float(x) for x in x[0:4]])))
-   trainData, testData = parsedData.randomSplit( [ 0.6 , 0.4 ] , seed = 11L)
+   trainData, testData = parsedData.randomSplit([0.6, 0.4] , seed=11L)
    
    dictCat = {}
    dictCatInv = {}
@@ -41,7 +42,7 @@ if __name__ == '__main__':
    bestRegParam = -1.0
    bestIntercept = False
    for r, intcp in itertools.product(regParamSet, interceptSet):
-       lr_classifier = LogisticRegressionWithLBFGS.train(trainData, regParam = r, intercept = intcp, numClasses=len(label_set))
+       lr_classifier = LogisticRegressionWithLBFGS.train(trainData, regParam=r, intercept=intcp, numClasses=len(label_set))
        predictions = lr_classifier.predict(testData.map(lambda x: x.features))
        labelsAndPredictions = testData.map(lambda lp: lp.label).zip(predictions)
        testErr = labelsAndPredictions.filter(lambda v_p: v_p[0] != v_p[1]).count() / float(testData.count())
