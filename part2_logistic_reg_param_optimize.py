@@ -13,7 +13,7 @@ if __name__ == '__main__':
    
    if not os.path.exists('results'):
       os.makedirs('results')
-   print "====================Data Reading Finished===================="
+   print("====================Data Reading Finished====================")
 
    feat1 = raw_training.map(lambda x: x[0]).distinct().collect()
    feat2 = raw_training.map(lambda x: x[1]).distinct().collect()

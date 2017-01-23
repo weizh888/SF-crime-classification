@@ -94,39 +94,38 @@ if __name__ == '__main__':
    # sc = SparkContext(appName='Crime Classification Part 2-3')
    # dataset = sc.textFile('results/Part2-numerical dataset_s.csv').map(parseLine)
    # # # for i in dataset.take(20):
-    # # # print i
+    # # # print(i)
    # trainingData, testData = dataset.randomSplit([0.7, 0.3], seed = 0)
    # trainingSet = trainingData.collect()
    # testSet = testData.collect
    # # # for i in trainingData.collect():
-     # # # print i
-   # # print trainingData.count(), testData.count()
+     # # # print(i)
+   # # print(trainingData.count(), testData.count())
    # # classes = trainingData.map(lambda x: x[4]).distinct().collect()
 
    filename = 'results/Part2-numerical dataset.csv'
    splitRatio = 0.7
    dataset = loadCsv(filename)
    for i in dataset[1:20]:
-      print i
+      print(i)
    
    trainingSet, testSet = splitDataset(dataset, splitRatio)
    print('Split {0} rows into train={1} and test={2} rows').format(len(dataset), len(trainingSet), len(testSet))
    # prepare model
 
    separated = separateByClass(trainingSet)
-   # print separated
-   # print '\n'
+   # print(separated)
    # separated2 = trainingData.map(lambda x: x[4]).distinct().collect()
-   # print separated2
+   # print(separated2)
    # summaries = {}
    # for classValue, instances in separated.iteritems():
       # summaries[classValue] = summarize(instances)
    # for i in summaries:
-      # print i, summaries[i]
+      # print(i, summaries[i])
 
    summaries = summarizeByClass(trainingSet)
    # for i in summaries:
-        # print i, summaries[i]
+        # print(i, summaries[i])
    # # test model
    predictions = []
    logloss = 0
@@ -147,17 +146,17 @@ if __name__ == '__main__':
       logloss += 1*math.log(p_ij)
    print logloss
    print -logloss*1.0/len(testSet)
-      # print probabilities
+      # print(probabilities)
       # bestLabel, bestProb = None, -1
       # for classValue, probability in probabilities.iteritems():
          # if bestLabel is None or probability > bestProb:
             # bestProb = probability
             # bestLabel = classValue
 
-'''
+"""
       predictions.append(result)
    # predictions = getPredictions(summaries, testSet)
    # accuracy = getAccuracy(testSet, predictions)
    # print('Accuracy: {0}%').format(accuracy)
-'''
+"""
 # sc.strop()

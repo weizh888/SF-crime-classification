@@ -1,13 +1,14 @@
 import string
 import operator
 import os
+import re
+import math
+from math import floor
+from time import time
 
 import numpy   as np
 from numpy import array
-import re
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
-
+import pandas as pd
 import matplotlib
 import matplotlib as mpl
 matplotlib.use('Agg')
@@ -15,25 +16,21 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 
-import math
-from math import floor
-
-import pandas as pd
+from pyspark import SparkContext
+from pyspark.sql import SQLContext
 from pyspark.mllib.util import MLUtils
 from pyspark.mllib.classification import LogisticRegressionWithLBFGS, LogisticRegressionModel
 # from spark.mllib.tree import configuration.Strategy
 # from sklearn.ensemble import RandomForestClassifier
-
 from pyspark.mllib.regression import LabeledPoint
 from pyspark.sql.functions import col
 from pyspark.mllib.tree import DecisionTree, DecisionTreeModel
 from pyspark.mllib.util import MLUtils
-
 from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import StringIndexer, VectorIndexer, VectorAssembler
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
-from time import time
+
 def drop_header(index, itr):
     if index == 0:
         return iter(list(itr)[1:])
@@ -103,12 +100,12 @@ if __name__ == '__main__':
    rdd0 = sc.textFile('train.csv').map(parseData).filter(lambda line: len(line)>1)
 
    header = rdd0.first()
-   # print header
+   # print(header)
    rdd = rdd0.mapPartitionsWithIndex(drop_header)
    
    if not os.path.exists('results'):
       os.makedirs('results')
-   print "====================Data Reading Finished===================="
+   print("====================Data Reading Finished====================")
 
    # converting RDD to dataframe
    raw_training = rdd.map(transformData)
@@ -120,7 +117,7 @@ if __name__ == '__main__':
    label_set = sorted(raw_training.map(lambda x: x[0]).distinct().collect())
    numData = raw_training.map(lambda x: [feat1.index(x[1]), feat2.index(x[2]), feat3.index(x[3]), feat4.index(x[4]), label_set.index(x[0])])
    for i in numData.take(50):
-       print i
+       print(i)
    file1 = open('results/Part2-numerical dataset.csv','w')
    file2 = open('results/Part2-numerical dataset.txt','w')
    for row in numData.collect():
@@ -128,7 +125,7 @@ if __name__ == '__main__':
        myStr2 = str(row[4])+': '+' '.join(str(i) for i in row[0:4])
        file1.write(myStr1+'\n')
        file2.write(myStr2+'\n')
-   '''
+   """
    parsedData = raw_training.map(create_labeled_point)
    trainingData, testData = parsedData.randomSplit( [ 0.6 , 0.4 ] , seed = 11L)
    
@@ -158,12 +155,12 @@ if __name__ == '__main__':
    t0 = time()
    testAccuracy = labelsAndPredictions.filter(lambda (v, p): v == p).count() / float(testData.count())
    tt = time() - t0
-   print "Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4))
+   print("Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4)))
 
    file = open('results/Part2-DT_Classifier.txt','w')
    file.write("True Label,  Predicted Label\n")
    # for (true_label, predict_label) in labelsAndPredictions.collect():
-      # print (dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
+      # print(dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
    testErr = labelsAndPredictions.filter(lambda (v, p): v != p).count() / float(testData.count())
    print('Test Rate = ' + str(testErr))
    file.write('Test Rate = ' + str(testErr)+'\n')
@@ -174,7 +171,7 @@ if __name__ == '__main__':
    # Save and load model
    # model.save(sc, "myModelPath")
    # sameModel = DecisionTreeModel.load(sc, "myModelPath")
-   '''
+   """
    file1.close()
    file2.close()
 

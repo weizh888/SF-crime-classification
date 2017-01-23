@@ -1,19 +1,17 @@
 import string
 import operator
 import os
-
-import numpy   as np
-from numpy import array
 import re
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
-
 import math
 from math import floor
 
+import numpy   as np
+from numpy import array
 import pandas as pd
-from pyspark.mllib.classification import LogisticRegressionWithLBFGS, LogisticRegressionModel
 
+from pyspark import SparkContext
+from pyspark.sql import SQLContext
+from pyspark.mllib.classification import LogisticRegressionWithLBFGS, LogisticRegressionModel
 from pyspark.mllib.regression import LabeledPoint
 from pyspark.sql.functions import col
 from pyspark.mllib.tree import RandomForest, RandomForestModel
@@ -28,9 +26,9 @@ def drop_header(index, itr):
 
 def parseData(line):
     list = line.split(",")
-	dates = re.sub(r'\W+', ' ', line[0]).split()
-	year, month, date, hour, min, second = dates[0], dates[1], dates[2], dates[3], dates[4], dates[5]
-	
+    dates = re.sub(r'\W+', ' ', line[0]).split()
+    year, month, date, hour, min, second = dates[0], dates[1], dates[2], dates[3], dates[4], dates[5]
+
     if '"' in list[2]:
         # some of the descripts contain '"'
         for i in xrange(3,len(list)):
@@ -97,7 +95,7 @@ if __name__ == '__main__':
    
    if not os.path.exists('results'):
       os.makedirs('results')
-   print "====================Data Reading Finished===================="
+   print("====================Data Reading Finished====================")
 
    # converting RDD to dataframe
    raw_training = rdd.map(transformData)
@@ -137,12 +135,12 @@ if __name__ == '__main__':
    t0 = time()
    testAccuracy = labelsAndPredictions.filter(lambda (v, p): v == p).count() / float(testData.count())
    tt = time() - t0
-   print "Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4))
+   print("Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4)))
 
    file = open('results/Part2-random forest.txt','w')
    file.write("True Label,  Predicted Label\n")
    # for (true_label, predict_label) in labelsAndPredictions.collect():
-      # print (dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
+      # print(dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
    testErr = labelsAndPredictions.filter(lambda (v, p): v != p).count() / float(testData.count())
    print('Test Rate = ' + str(testErr))
    file.write('Test Rate = ' + str(testErr)+'\n')

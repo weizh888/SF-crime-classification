@@ -1,13 +1,14 @@
 import string
 import operator
 import os
+import re
+import math
+from math import floor
+from time import time
 
 import numpy   as np
 from numpy import array
-import re
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
-
+import pandas as pd
 import matplotlib
 import matplotlib as mpl
 matplotlib.use('Agg')
@@ -15,25 +16,21 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 
-import math
-from math import floor
-
-import pandas as pd
+from pyspark import SparkContext
+from pyspark.sql import SQLContext
 from pyspark.mllib.util import MLUtils
 from pyspark.mllib.classification import LogisticRegressionWithLBFGS, LogisticRegressionModel
 # from spark.mllib.tree import configuration.Strategy
 # from sklearn.ensemble import RandomForestClassifier
-
 from pyspark.mllib.regression import LabeledPoint
 from pyspark.sql.functions import col
 from pyspark.mllib.tree import DecisionTree, DecisionTreeModel
 from pyspark.mllib.util import MLUtils
-
 from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import StringIndexer, VectorIndexer, VectorAssembler
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
-from time import time
+
 def drop_header(index, itr):
     if index == 0:
         return iter(list(itr)[1:])
@@ -105,12 +102,12 @@ if __name__ == '__main__':
    rdd0 = sc.textFile('train_35000.csv').map(parseData).filter(lambda line: len(line)>1)
 
    header = rdd0.first()
-   # print header
+   # print(header)
    rdd = rdd0.mapPartitionsWithIndex(drop_header)
    
    if not os.path.exists('results'):
       os.makedirs('results')
-   print "====================Data Reading Finished===================="
+   print("====================Data Reading Finished====================")
 
    # converting RDD to dataframe
    raw_training = rdd.map(transformData)
@@ -139,7 +136,7 @@ if __name__ == '__main__':
    t0 = time()
    dt_classifier = DecisionTree.trainClassifier(trainingData,numClasses=len(label_set),categoricalFeaturesInfo={0: len(feat1), 1: len(feat2), 2: len(feat3),3: len(feat4)},impurity='gini', maxDepth=30, maxBins=max([len(feat1),len(feat2),len(feat3),len(feat4)]))
    tt = time() - t0
-   print "Classifier trained in {} seconds".format(round(tt,3))
+   print("Classifier trained in {} seconds".format(round(tt,3)))
 
    # Evaluate the model
    # testData = trainingData
@@ -149,12 +146,12 @@ if __name__ == '__main__':
    t0 = time()
    testAccuracy = labelsAndPredictions.filter(lambda (v, p): v == p).count() / float(testData.count())
    tt = time() - t0
-   print "Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4))
+   print("Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4)))
 
    file = open('results/Part2-decision tree.txt','w')
    file.write("True Label,  Predicted Label\n")
    # for (true_label, predict_label) in labelsAndPredictions.collect():
-      # print (dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
+      # print(dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
    testErr = labelsAndPredictions.filter(lambda (v, p): v != p).count() / float(testData.count())
    print('Test Rate = ' + str(testErr))
    file.write('Test Rate = ' + str(testErr)+'\n')

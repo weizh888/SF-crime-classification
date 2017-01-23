@@ -1,11 +1,13 @@
 import os
+from time import time
+import itertools
+
 from numpy import array
+
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
 from pyspark.mllib.classification import LogisticRegressionWithLBFGS
 from pyspark.mllib.regression import LabeledPoint
-import itertools
-from time import time
 
 if __name__ == '__main__':
    sc = SparkContext(appName='Crime Classification Part 2-1 LR')
@@ -14,7 +16,7 @@ if __name__ == '__main__':
    
    if not os.path.exists('results'):
       os.makedirs('results')
-   print "====================Data Reading Finished===================="
+   print("====================Data Reading Finished====================")
 
    feat1 = raw_training.map(lambda x: x[0]).distinct().collect()
    feat2 = raw_training.map(lambda x: x[1]).distinct().collect()
@@ -39,7 +41,7 @@ if __name__ == '__main__':
    t0 = time()     
    lr_classifier = LogisticRegressionWithLBFGS.train(trainData, regParam = 1, intercept = True, numClasses=len(label_set))
    tt = time() - t0
-   print "Classifier trained in {} seconds".format(round(tt,3))   
+   print("Classifier trained in {} seconds".format(round(tt,3)))
  
    predictions = lr_classifier.predict(testData.map(lambda x: x.features))
    labelsAndPredictions = testData.map(lambda lp: lp.label).zip(predictions) 
@@ -47,12 +49,12 @@ if __name__ == '__main__':
    t0 = time()   
    testErr = labelsAndPredictions.filter(lambda v_p: v_p[0] != v_p[1]).count() / float(testData.count())
    tp = time() - t0
-   print "Prediction made in {} seconds. Test error is {}".format(round(tp,3), round(testErr,4))
+   print("Prediction made in {} seconds. Test error is {}".format(round(tp,3), round(testErr,4)))
    
    file = open('results/Part2-logistic reg.txt','w')
    file.write("True Label,  Predicted Label\n")
    for (true_label, predict_label) in labelsAndPredictions.collect():
-      print (dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
+      print(dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
       file.write(dictCatInv[int(true_label)]+': ' +dictCatInv[int(predict_label)]+'\n')
 
    print('Error Rate = ' + str(testErr))
