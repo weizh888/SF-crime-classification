@@ -41,13 +41,13 @@ def parseData(line):
     list = line.split(",")
     if '"' in list[2]:
         # some of the descripts contain '"'
-        for i in xrange(3,len(list)):
+        for i in xrange(3, len(list)):
             if '"' in list[i]:
                 lastquote = i; break;
         list[2:lastquote+1] = [','.join(list[2:lastquote+1])]
     if '"' in list[5]:
         # some of the descripts contain '"'
-        for i in xrange(6,len(list)):
+        for i in xrange(6, len(list)):
             if '"' in list[i]:
                 lastquote = i; break;
         list[5:lastquote+1] = [','.join(list[5:lastquote+1])]
@@ -61,7 +61,7 @@ def get_value(element):
     return element[1]
 
 def save_file(x, y, filename):
-    f = open('results/Part1-'+filename + '.txt', 'w')
+    f = open('results/Part1-' + filename + '.txt', 'w')
     for i in range(len(x)):
         f.write(x[i] + ": " + str(y[i]) + "\n")
     f.close() 
@@ -122,12 +122,12 @@ if __name__ == '__main__':
    file2 = open('results/Part2-numerical dataset.txt','w')
    for row in numData.collect():
        myStr1 = ', '.join(str(i) for i in row)
-       myStr2 = str(row[4])+': '+' '.join(str(i) for i in row[0:4])
-       file1.write(myStr1+'\n')
-       file2.write(myStr2+'\n')
+       myStr2 = str(row[4]) + ': ' + ' '.join(str(i) for i in row[0:4])
+       file1.write(myStr1 + '\n')
+       file2.write(myStr2 + '\n')
    """
    parsedData = raw_training.map(create_labeled_point)
-   trainingData, testData = parsedData.randomSplit( [ 0.6 , 0.4 ] , seed = 11L)
+   trainingData, testData = parsedData.randomSplit([0.6, 0.4], seed=11L)
    
    # category = sorted(raw_training.map(lambda x: x[0]).distinct().collect())
    dictCat = {}

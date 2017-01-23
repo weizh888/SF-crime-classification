@@ -34,7 +34,7 @@ def mean(numbers):
  
 def stdev(numbers):
 	avg = mean(numbers)
-	variance = sum([pow(x-avg,2) for x in numbers])/float(len(numbers)-1)
+	variance = sum([pow(x-avg, 2) for x in numbers]) / float(len(numbers) - 1)
 	return math.sqrt(variance)
  
 def summarize(dataset):
@@ -50,7 +50,7 @@ def summarizeByClass(dataset):
 	return summaries
  
 def calculateProbability(x, mean, stdev):
-	exponent = math.exp(-(math.pow(x-mean,2)/(2*math.pow(stdev,2))))
+	exponent = math.exp(-(math.pow(x-mean, 2) / (2*math.pow(stdev, 2))))
 	return (1 / (math.sqrt(2*math.pi) * stdev)) * exponent
  
 def calculateClassProbabilities(summaries, inputVector):
@@ -95,7 +95,7 @@ if __name__ == '__main__':
    # dataset = sc.textFile('results/Part2-numerical dataset_s.csv').map(parseLine)
    # # # for i in dataset.take(20):
     # # # print(i)
-   # trainingData, testData = dataset.randomSplit([0.7, 0.3], seed = 0)
+   # trainingData, testData = dataset.randomSplit([0.7, 0.3], seed=0)
    # trainingSet = trainingData.collect()
    # testSet = testData.collect
    # # # for i in trainingData.collect():
@@ -145,7 +145,7 @@ if __name__ == '__main__':
       print p_ij
       logloss += 1*math.log(p_ij)
    print logloss
-   print -logloss*1.0/len(testSet)
+   print -logloss*1.0 / len(testSet)
       # print(probabilities)
       # bestLabel, bestProb = None, -1
       # for classValue, probability in probabilities.iteritems():

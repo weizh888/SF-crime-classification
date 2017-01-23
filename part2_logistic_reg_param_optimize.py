@@ -22,7 +22,7 @@ if __name__ == '__main__':
    feat4 = raw_training.map(lambda x: x[3]).distinct().collect()
    label_set = sorted(raw_training.map(lambda x: x[4]).distinct().collect())
    parsedData = raw_training.map(lambda x: LabeledPoint(x[4], array([float(x) for x in x[0:4]])))
-   trainData, testData = parsedData.randomSplit([0.6, 0.4] , seed=11L)
+   trainData, testData = parsedData.randomSplit([0.6, 0.4], seed=11L)
    
    dictCat = {}
    dictCatInv = {}

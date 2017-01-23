@@ -31,13 +31,13 @@ def parseData(line):
 
     if '"' in list[2]:
         # some of the descripts contain '"'
-        for i in xrange(3,len(list)):
+        for i in xrange(3, len(list)):
             if '"' in list[i]:
                 lastquote = i; break;
         list[2:lastquote+1] = [','.join(list[2:lastquote+1])]
     if '"' in list[5]:
         # some of the descripts contain '"'
-        for i in xrange(6,len(list)):
+        for i in xrange(6, len(list)):
             if '"' in list[i]:
                 lastquote = i; break;
         list[5:lastquote+1] = [','.join(list[5:lastquote+1])]
@@ -51,7 +51,7 @@ def get_value(element):
     return element[1]
 
 def save_file(x, y, filename):
-    f = open('results/Part1-'+filename + '.txt', 'w')
+    f = open('results/Part1-' + filename + '.txt', 'w')
     for i in range(len(x)):
         f.write(x[i] + ": " + str(y[i]) + "\n")
     f.close() 
@@ -125,7 +125,7 @@ if __name__ == '__main__':
    t0 = time()
    rf_classifier = RandomForest.trainClassifier(trainingData,numClasses=len(label_set),categoricalFeaturesInfo={0: len(feat1), 1: len(feat2), 2: len(feat3),3: len(feat4)},numTrees=50, featureSubsetStrategy="auto",impurity='entropy', maxDepth=15, maxBins=max([len(feat1),len(feat2),len(feat3),len(feat4)]))
    tt = time() - t0
-   print "Classifier trained in {} seconds".format(round(tt,3))
+   print "Classifier trained in {} seconds".format(round(tt, 3))
 
    # Evaluate the model
    testData = trainingData
@@ -135,7 +135,7 @@ if __name__ == '__main__':
    t0 = time()
    testAccuracy = labelsAndPredictions.filter(lambda (v, p): v == p).count() / float(testData.count())
    tt = time() - t0
-   print("Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4)))
+   print("Prediction made in {} seconds. Test accuracy is {}".format(round(tt, 3), round(testAccuracy, 4)))
 
    file = open('results/Part2-random forest.txt','w')
    file.write("True Label,  Predicted Label\n")
@@ -143,9 +143,9 @@ if __name__ == '__main__':
       # print(dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
    testErr = labelsAndPredictions.filter(lambda (v, p): v != p).count() / float(testData.count())
    print('Test Rate = ' + str(testErr))
-   file.write('Test Rate = ' + str(testErr)+'\n')
+   file.write('Test Rate = ' + str(testErr) + '\n')
    for (true_label, predict_label) in labelsAndPredictions.collect():
-      file.write(str(true_label==predict_label)+': '+dictCatInv[int(true_label)]+', ' +dictCatInv[int(predict_label)]+'\n')
+      file.write(str(true_label==predict_label) + ': ' + dictCatInv[int(true_label)] + ', ' + dictCatInv[int(predict_label)] + '\n')
    # print('Learned classification forest model:')
    # print(rf_classifier.toDebugString())
 
