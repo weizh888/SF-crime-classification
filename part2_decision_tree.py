@@ -41,13 +41,13 @@ def parseData(line):
     list = line.split(",")
     if '"' in list[2]:
         # some of the descripts contain '"'
-        for i in xrange(3,len(list)):
+        for i in xrange(3, len(list)):
             if '"' in list[i]:
                 lastquote = i; break;
         list[2:lastquote+1] = [','.join(list[2:lastquote+1])]
     if '"' in list[5]:
         # some of the descripts contain '"'
-        for i in xrange(6,len(list)):
+        for i in xrange(6, len(list)):
             if '"' in list[i]:
                 lastquote = i; break;
         list[5:lastquote+1] = [','.join(list[5:lastquote+1])]
@@ -63,7 +63,7 @@ def get_value(element):
     return element[1]
 
 def save_file(x, y, filename):
-    f = open('results/Part1-'+filename + '.txt', 'w')
+    f = open("results/Part1-" + filename + ".txt", 'w')
     for i in range(len(x)):
         f.write(x[i] + ": " + str(y[i]) + "\n")
     f.close() 
@@ -119,7 +119,7 @@ if __name__ == '__main__':
    feat5 = raw_training.map(lambda x: x[5]).distinct().collect()
    label_set = sorted(raw_training.map(lambda x: x[0]).distinct().collect())
    parsedData = raw_training.map(create_labeled_point)
-   trainingData, testData = parsedData.randomSplit( [ 0.6 , 0.4 ] , seed = 11L)
+   trainingData, testData = parsedData.randomSplit([0.6, 0.4], seed=11L)
    
    # category = sorted(raw_training.map(lambda x: x[0]).distinct().collect())
    dictCat = {}
@@ -137,7 +137,7 @@ if __name__ == '__main__':
    t0 = time()
    dt_classifier = DecisionTree.trainClassifier(trainingData,numClasses=len(label_set),categoricalFeaturesInfo={0: len(feat1), 1: len(feat2), 2: len(feat3),3: len(feat4), 4:len(feat5)},impurity='gini', maxDepth=30, maxBins=max([len(feat1),len(feat2),len(feat3),len(feat4)]))
    tt = time() - t0
-   print "Classifier trained in {} seconds".format(round(tt,3))
+   print "Classifier trained in {} seconds".format(round(tt, 3))
 
    # Evaluate the model
    # testData = trainingData
@@ -147,7 +147,7 @@ if __name__ == '__main__':
    t0 = time()
    testAccuracy = labelsAndPredictions.filter(lambda (v, p): v == p).count() / float(testData.count())
    tt = time() - t0
-   print("Prediction made in {} seconds. Test accuracy is {}".format(round(tt,3), round(testAccuracy,4)))
+   print("Prediction made in {} seconds. Test accuracy is {}".format(round(tt, 3), round(testAccuracy, 4)))
 
    file = open('results/Part2-decision tree.txt','w')
    file.write("True Label,  Predicted Label\n")
@@ -155,9 +155,9 @@ if __name__ == '__main__':
       # print(dictCatInv[int(true_label)], dictCatInv[int(predict_label)])
    testErr = labelsAndPredictions.filter(lambda (v, p): v != p).count() / float(testData.count())
    print('Test Rate = ' + str(testErr))
-   file.write('Test Rate = ' + str(testErr)+'\n')
+   file.write('Test Rate = ' + str(testErr) + '\n')
    for (true_label, predict_label) in labelsAndPredictions.collect():
-      file.write(str(true_label==predict_label)+': '+dictCatInv[int(true_label)]+', ' +dictCatInv[int(predict_label)]+'\n')
+      file.write(str(true_label==predict_label) + ': ' + dictCatInv[int(true_label)] + ', ' + dictCatInv[int(predict_label)] + '\n')
    # print('Learned classification forest model:')
    # print(dt_classifier.toDebugString())
    # Save and load model
